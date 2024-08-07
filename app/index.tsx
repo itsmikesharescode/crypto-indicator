@@ -1,5 +1,4 @@
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 

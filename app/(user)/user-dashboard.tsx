@@ -3,11 +3,27 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SelectSymbols from './user_components/SelectSymbols';
 import { KlineData, SymbolData } from '@/types';
+import SelectIntervals from './user_components/SelectIntervals';
 
 const UserDashboardPage = () => {
   const [symbols, setSymbols] = useState<SymbolData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const [symbol, setSymbol] = useState<SymbolData | null>(null);
+  const [interval, setInterval] = useState<{ name: string; value: string } | null>(null);
+  const [symbolSelect, setSymbolSelect] = useState(false);
+  const [intervalSelect, setIntervalSelect] = useState(false);
+
+  const handleSelectSymbol = (symbolObj: SymbolData) => {
+    setSymbol(symbolObj);
+    setSymbolSelect(false);
+  };
+
+  const handleSelectIntervals = (interval: { name: string; value: string }) => {
+    setInterval(interval);
+    setIntervalSelect(false);
+  };
 
   useEffect(() => {
     const fetchSymbols = async () => {
@@ -80,7 +96,22 @@ const UserDashboardPage = () => {
   return (
     <SafeAreaView className="bg-primary flex-1">
       <View className="p-[10px]">
-        <SelectSymbols symbols={symbols} />
+        <SelectSymbols
+          symbols={symbols}
+          onSelect={handleSelectSymbol}
+          select={symbolSelect}
+          setSelect={setSymbolSelect}
+          externalSetter={setIntervalSelect}
+        />
+      </View>
+
+      <View className="p-[10px]">
+        <SelectIntervals
+          onSelect={handleSelectIntervals}
+          select={intervalSelect}
+          setSelect={setIntervalSelect}
+          externalSetter={setSymbolSelect}
+        />
       </View>
       <ScrollView contentContainerStyle={{ minHeight: '70%' }}>
         <View className="flex-1  items-center p-[10px]">

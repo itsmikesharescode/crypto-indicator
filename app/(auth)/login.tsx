@@ -26,6 +26,7 @@ const LoginPage = () => {
             placeholder="Enter your password"
             handleChangeText={() => {}}
             otherStyles="mt-2"
+            secureTextEntry={true}
           />
 
           <Text className="font-pregular my-2 text-red-500 w-full">Must enter a password.</Text>
