@@ -3,9 +3,9 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
-const ForgotPassword = () => {
+const ForgotPasswordPage = () => {
   return (
     <SafeAreaView className="bg-primary flex-1">
       <ScrollView contentContainerStyle={{ minHeight: '100%' }}>
@@ -27,7 +27,7 @@ const ForgotPassword = () => {
 
           <CustomButton
             containerStyle=""
-            handPress={() => console.log('hi')}
+            handPress={() => router.navigate('/enter-code')}
             title="Reset Password"
           />
 
@@ -48,6 +48,6 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ForgotPasswordPage;
 
 const styles = StyleSheet.create({});
