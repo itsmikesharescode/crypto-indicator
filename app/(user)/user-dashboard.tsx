@@ -49,6 +49,7 @@ const UserDashboardPage = () => {
   let ws: WebSocket;
 
   useEffect(() => {
+    console.log(`kline.${interval}.${symbol?.name}`);
     // Connect to the Bybit WebSocket API
     ws = new WebSocket('wss://stream-testnet.bybit.com/v5/public/spot');
 
@@ -58,7 +59,7 @@ const UserDashboardPage = () => {
       // Subscribe to the kline data for a specific trading pair and interval
       const subscribeMessage = {
         op: 'subscribe',
-        args: ['kline.5.BTCUSDT'], // Replace 'BTCUSDT' with your desired trading pair
+        args: [`kline.${interval?.value}.${symbol?.name}`], // Replace 'BTCUSDT' with your desired trading pair
       };
 
       ws.send(JSON.stringify(subscribeMessage));
@@ -70,7 +71,7 @@ const UserDashboardPage = () => {
         console.log('Received data:', data);
 
         // Check if the event type is kline
-        if (data.topic === 'kline.5.BTCUSDT' && data.type === 'snapshot') {
+        if (data.topic === `kline.${interval?.value}.${symbol?.name}` && data.type === 'snapshot') {
           const kline = data.data[0];
           setKlineData(kline);
         }
@@ -91,7 +92,7 @@ const UserDashboardPage = () => {
     return () => {
       ws.close();
     };
-  }, []);
+  }, [symbol && interval]);
 
   return (
     <SafeAreaView className="bg-primary flex-1">
