@@ -1,19 +1,20 @@
-import { ScrollView, Text, View } from 'react-native';
-import React from 'react';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 
 const RootIndex = () => {
   return (
-    <SafeAreaView className="flex-1 bg-primary">
-      <ScrollView contentContainerStyle={{ height: '100%' }}>
-        <View className="flex-1 flex-col justify-center items-center gap-[20px]">
-          <Text className="font-pregular text-xl text-white">Welcome to Crypto Indicator App!</Text>
-          <Link
-            href="/login"
-            className="p-[15] font-psemibold text-base text-primary justify-center items-center  bg-secondary rounded-lg"
-          >
-            Get Started
+    <SafeAreaView className="bg-primary flex-1">
+      <ScrollView contentContainerStyle={{ minHeight: '100%' }}>
+        <View className="flex-col gap-[10px] justify-center items-center flex-1">
+          <Text className="font-psemibold text-lg text-gray-200">Welcome to Crypto Indicator</Text>
+          <Link href="/login" asChild>
+            <TouchableOpacity>
+              <Text className="p-[15px] bg-secondary font-psemibold rounded-lg text-base">
+                Get Started
+              </Text>
+            </TouchableOpacity>
           </Link>
         </View>
       </ScrollView>

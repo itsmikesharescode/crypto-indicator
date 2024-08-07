@@ -3,7 +3,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 const LoginPage = () => {
   return (
@@ -30,7 +30,11 @@ const LoginPage = () => {
 
           <Text className="font-pregular my-2 text-red-500 w-full">Must enter a password.</Text>
 
-          <CustomButton containerStyle="" handPress={() => console.log('hi')} title="Log in" />
+          <CustomButton
+            containerStyle=""
+            title="Log in"
+            handPress={() => router.replace('/user-dashboard')}
+          />
 
           <View className="h-[2px] bg-slate-600 mt-[20px] w-full"></View>
 

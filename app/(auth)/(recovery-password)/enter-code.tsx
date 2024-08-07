@@ -37,5 +37,3 @@ const EnterCodePage = () => {
 };
 
 export default EnterCodePage;
-
-const styles = StyleSheet.create({});
